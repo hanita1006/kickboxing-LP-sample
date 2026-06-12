@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>女性専用キックボクシングジム 体験予約キャンペーン</title>
+
+  <style>
+    body {
+      font-family:
+        Arial,
+        "ヒラギノ角ゴ ProN W3",
+        "Hiragino Kaku Gothic ProN",
+        "メイリオ",
+        Meiryo,
+        sans-serif;
+
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 16px;
+      line-height: 1.8;
+      color: #222;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    header,
+    footer {
+      text-align: center;
+    }
+
+    h1 {
+      color: black;
+      font-weight: bold;
+      font-size: 36px;
+      background-color: white;
+    }
+
+    h2 {
+      color: black;
+      font-weight: bold;
+      font-size: 24px;
+      background-color: white;
+      text-align: center;
+    }
+
+    figcaption {
+      font-size: 12px;
+    }
+
+    form {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    input[type="number"] {
+      width: 120px;
+      padding: 6px;
+      font-size: 16px;
+    }
+
+    input[type="button"] {
+      margin-top: 12px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .centering {
+      text-align: center;
+    }
+
+    .red-reverse {
+      color: white;
+      background-color: #d62828;
+      padding: 2px 6px;
+    }
+
+    .yellow-futo {
+      background: linear-gradient(transparent 65%, yellow 65%);
+    }
+
+    .cv-contents {
+      max-width: 900px;
+      margin: 24px auto;
+      padding: 16px;
+      border: 1px dashed gray;
+      border-radius: 10px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .cv-contents figure.left {
+      float: left;
+      margin: 0 20px 12px 0;
+    }
+
+    .cv-contents figure.right {
+      float: right;
+      margin: 0 0 12px 20px;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .campaign-box {
+      max-width: 900px;
+      margin: 24px auto;
+      padding: 20px;
+      border: 3px solid #d62828;
+      border-radius: 12px;
+      text-align: center;
+      background-color: #fff7f7;
+    }
+
+    .campaign-box strong {
+      font-size: 28px;
+      color: #d62828;
+    }
+
+    .bmi-check {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-color: #f8f8f8;
+    }
+
+    #bmiResult {
+      margin-top: 16px;
+      font-weight: bold;
+    }
+
+    #campaignMessage {
+      font-weight: bold;
+      color: #d62828;
+    }
+
+    p.service {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .cta-button {
+      display: block;
+      max-width: 360px;
+      margin: 20px auto;
+      padding: 14px 20px;
+
+      background-color: #ff7a00;
+      color: white;
+
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+
+      border-radius: 8px;
+
+      animation: prunprun 2.2s ease-in infinite;
+    }
+
+    .cta-button:hover {
+      background-color: #d95f00;
+    }
+
+    .cta-button:active {
+      background-color: #b94f00;
+    }
+
+    @keyframes prunprun {
+      48%,
+      62% {
+        transform: scale(1, 1);
+      }
+
+      50% {
+        transform: scale(1.1, 0.9);
+      }
+
+      56% {
+        transform: scale(0.9, 1.1) translate(0, -5px);
+      }
+
+      59% {
+        transform: scale(1, 1) translate(0, -3px);
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      body {
+        font-size: 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      figcaption {
+        font-size: 12px;
+      }
+
+      .cv-contents figure.left,
+      .cv-contents figure.right {
+        float: none;
+        margin: 0 auto 12px;
+        text-align: center;
+      }
+
+      .campaign-box strong {
+        font-size: 24px;
+      }
+
+      .cta-button {
+        font-size: 18px;
+      }
+    }
+  </style>
+
+  <script>
+    function fncBMI() {
+      const weight = Number(document.bmi.bmiWeight.value);
+      const height = Number(document.bmi.bmiHeight.value) / 100;
+
+      const result = document.getElementById("bmiResult");
+      const campaign = document.getElementById("campaignMessage");
+
+      if (!weight || !height || weight <= 0 || height <= 0) {
+        result.textContent = "身長と体重を正しく入力してください。";
+        campaign.textContent = "";
+        return;
+      }
+
+      const bmi = weight / (height * height);
+
+      result.textContent = `あなたのBMIは ${bmi.toFixed(1)} です。`;
+
+      if (bmi >= 25) {
+        campaign.textContent =
+          "キャンペーン対象です！先着30名様限定で、初月3,000円OFF。";
+      } else {
+        campaign.textContent =
+          "体験予約を受付中です。運動習慣づくりを始めてみませんか？";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>楽しみながら、理想の自分へ。</h1>
+
+    <figure>
+      <img src="img/6-01-top.png" alt="女性専用キックボクシングジム">
+      <figcaption>初心者でも楽しく続けられる女性専用ジム</figcaption>
+    </figure>
+
+    <div class="campaign-box">
+      <p>女性専用キックボクシングジム</p>
+
+      <strong>
+        BMI25以上の方限定<br>
+        先着30名様 初月3,000円OFF
+      </strong>
+
+      <p>
+        運動不足を解消したい方、楽しみながら理想の身体を目指したい方へ。
+      </p>
+    </div>
+
+    <p>
+      <a class="cta-button" href="#cta">
+        今すぐ体験予約する
+      </a>
+    </p>
+
+    <p>
+      女性専用キックボクシングジムでは、<br>
+      初心者の方でも安心して続けられる<br>
+      <strong>
+        <span class="yellow-futo">
+          楽しく効果的なトレーニング環境
+        </span>
+      </strong>
+      をご用意しています。
+    </p>
+  </header>
+
+  <main>
+    <section class="cv-contents">
+      <figure class="left">
+        <img src="img/6-02-ps.png" alt="女性専用で安心のトレーニング空間">
+        <figcaption>女性専用で安心して通えるトレーニング空間</figcaption>
+      </figure>
+
+      <p class="clearfix">
+        <strong>
+          <span class="red-reverse">
+            女性専用だから安心
+          </span>
+        </strong>
+
+        <br><br>
+
+        人目を気にせず、初心者の方でも気軽に運動を始められます。
+
+        <br><br>
+
+        ストレス発散、運動不足解消、体質改善など、
+        一人ひとりの目標に合わせて楽しく続けられる環境です。
+      </p>
+    </section>
+
+    <section class="cv-contents">
+      <figure class="right">
+        <img src="img/6-03-cv.png" alt="お客様の声">
+      </figure>
+
+      <p class="clearfix">
+        <strong>
+          <span class="red-reverse">
+            お客様の声
+          </span>
+        </strong>
+
+        <br><br>
+
+        運動不足が解消され、代謝が上がった感じがします！
+        <br>
+        (20代・女性)
+
+        <br><br>
+
+        キックボクシングはストレス発散にもなり、
+        楽しみながら運動習慣をつけることができました。
+        <br>
+        (40代・女性)
+
+        <br><br>
+
+        三か月ほどで身体の変化を感じられたのが嬉しいです。
+
+        <br>
+        （40代・女性）
+
+        <br><br>
+
+        <small>
+          ※結果には個人差があり、全ての方が同様の結果になるとは限りません。
+        </small>
+      </p>
+    </section>
+
+    <section class="bmi-check">
+      <h2>あなたのBMIをチェック</h2>
+
+      <form name="bmi">
+        <p>
+          身長と体重を入力して、現在のBMIを確認してみましょう。
+        </p>
+
+        <label>
+          体重：
+          <input type="number" name="bmiWeight" min="1" step="0.1">
+          kg
+        </label>
+
+        <br>
+
+        <label>
+          身長：
+          <input type="number" name="bmiHeight" min="1" step="0.1">
+          cm
+        </label>
+
+        <br>
+
+        <input
+          type="button"
+          value="BMIを計算する"
+          onclick="fncBMI()"
+        >
+
+        <p id="bmiResult"></p>
+        <p id="campaignMessage"></p>
+
+        <p>
+          BMI25以上の方は、先着30名様限定キャンペーンの対象です。
+        </p>
+      </form>
+    </section>
+<p id="bmiResult"></p>
+<p id="campaignMessage"></p>
+
+<p>
+  <a class="cta-button" href="#cta">
+    キャンペーンを利用して体験予約する
+  </a>
+</p>
+
+<p>
+  BMI25以上の方は、先着30名様限定キャンペーンの対象です。
+</p>
+<section>
+  <h2>サービス内容</h2>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/YLm4wfZWgWU"
+      title="女性専用キックボクシングジム LP用デモ動画"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <p class="service">
+    <strong>■初心者向けキックボクシングレッスン</strong>
+    <br>
+    初めての方でも安心して参加できるレッスンです。
+    <br><br>
+
+    <strong>■パーソナルミット指導</strong>
+    <br>
+    一人ひとりの目標に合わせて、楽しく身体を動かせます。
+    <br><br>
+
+    <strong>■カウンセリング</strong>
+    <br>
+    運動不足、ストレス発散、体質改善など、
+    お悩みや目標に合わせてご案内します。
+  </p>
+</section>
+    <section id="cta">
+      <h2>まずは体験から始めてみませんか？</h2>
+
+      <p>
+        <a
+          class="cta-button"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.google.co.jp"
+        >
+          今すぐ体験予約する
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <small>
+      &copy; 2026 女性専用キックボクシングジム.
+    </small>
+  </footer>
+</body>
+</html>
+
